@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.idea/
+.vscode/
+samples/export_*/
+samples/export_test/
+*.egg-info/
+dist/
+build/
+*.itk
+temp/
