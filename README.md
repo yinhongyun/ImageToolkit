@@ -1,6 +1,6 @@
 ﻿# ImageToolkit
 
-本地图片拆分工具：自动/手动拆图、范围预览、背景透明、多格式导出、`.itk` 工程保存。
+把一张拼图式素材（如角色三视图）自动或手动拆成多张透明底单图，并支持预览、改名与多格式导出。
 
 ## 环境
 
@@ -21,6 +21,8 @@ pip install -r requirements.txt
 ```bash
 python src\app.py
 ```
+
+或双击 `run.bat`。
 
 ## 主要功能
 
@@ -54,3 +56,7 @@ python src\app.py
 ## 样例
 
 `samples/character_sheet.png` — 角色三视图测试图
+
+## License
+
+Apache License 2.0（见 `LICENSE`）
