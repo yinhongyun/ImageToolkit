@@ -7,18 +7,25 @@
 - Python 3.11+
 - Windows（已在 Win10 验证）
 
-## 安装
+## 使用方式一：免安装 exe（推荐，换电脑直接用）
+
+把 `dist\ImageToolkit` 整个文件夹（或 `ImageToolkit-win64.zip` 解压后）拷到任意 Windows 电脑，双击其中的 **`ImageToolkit.exe`** 即可，不需要安装 Python。
+
+本机重新打包：
+
+```bat
+.\.venv\Scripts\python.exe -m PyInstaller ImageToolkit.spec --noconfirm
+```
+
+产物在 `dist\ImageToolkit\`。
+
+## 使用方式二：源码运行（开发用）
 
 ```bash
 cd D:\ImageToolkit
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-## 启动
-
-```bash
 python src\app.py
 ```
 

@@ -10,8 +10,15 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
 
 
+def _resource_root() -> Path:
+    # PyInstaller extracts bundled files under sys._MEIPASS
+    if getattr(sys, "frozen", False):
+        return Path(getattr(sys, "_MEIPASS", Path(sys.executable).parent))
+    return Path(__file__).resolve().parent
+
+
 def _load_style(app: QApplication) -> None:
-    qss = Path(__file__).resolve().parent / "resources" / "styles" / "app.qss"
+    qss = _resource_root() / "resources" / "styles" / "app.qss"
     if qss.exists():
         app.setStyleSheet(qss.read_text(encoding="utf-8"))
 
