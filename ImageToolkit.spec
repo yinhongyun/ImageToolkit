@@ -7,6 +7,9 @@ a = Analysis(
     binaries=[],
     datas=[
         ('src\\resources\\styles\\app.qss', 'resources\\styles'),
+        ('src\\resources\\icons\\app_icon.ico', 'resources\\icons'),
+        ('src\\resources\\icons\\app_icon.png', 'resources\\icons'),
+        ('src\\resources\\icons\\app_icon_256.png', 'resources\\icons'),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -57,6 +60,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='src\\resources\\icons\\app_icon.ico',
 )
 coll = COLLECT(
     exe,

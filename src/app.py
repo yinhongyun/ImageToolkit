@@ -7,10 +7,10 @@ from pathlib import Path
 
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont
+from PySide6.QtGui import QFont, QIcon
 
 
-def _resource_root() -> Path:
+def resource_root() -> Path:
     # PyInstaller extracts bundled files under sys._MEIPASS
     if getattr(sys, "frozen", False):
         return Path(getattr(sys, "_MEIPASS", Path(sys.executable).parent))
@@ -18,9 +18,18 @@ def _resource_root() -> Path:
 
 
 def _load_style(app: QApplication) -> None:
-    qss = _resource_root() / "resources" / "styles" / "app.qss"
+    qss = resource_root() / "resources" / "styles" / "app.qss"
     if qss.exists():
         app.setStyleSheet(qss.read_text(encoding="utf-8"))
+
+
+def _load_app_icon() -> QIcon:
+    root = resource_root() / "resources" / "icons"
+    for name in ("app_icon.ico", "app_icon_256.png", "app_icon.png"):
+        path = root / name
+        if path.exists():
+            return QIcon(str(path))
+    return QIcon()
 
 
 def main() -> int:
@@ -39,10 +48,15 @@ def main() -> int:
     font = QFont("Segoe UI", 10)
     app.setFont(font)
     _load_style(app)
+    icon = _load_app_icon()
+    if not icon.isNull():
+        app.setWindowIcon(icon)
 
     from ui.main_window import MainWindow
 
     win = MainWindow()
+    if not icon.isNull():
+        win.setWindowIcon(icon)
     win.show()
     return app.exec()
 
